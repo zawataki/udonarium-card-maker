@@ -20,11 +20,13 @@
   <p>Udonariumで利用できるカードを作成できます。</p>
 
   <h2>連番カード</h2>
-  <label for="fname">最初の数字：</label>
-  <input type="number" pattern="\d*" id="firstNumber"><br><br>
-  <label for="lname">最後の数字：</label>
-  <input type="number" pattern="\d*" id="lastNumber"><br><br>
-  <button onclick="makeSequentialCards()">作成</button>
+  <form style="display: inline-block" action="javascript:makeSequentialCards()">
+    <input type="number" pattern="\d*" id="firstNumber" style="width: 3em;">
+    から始まって
+    <input type="number" pattern="\d*" id="lastNumber" style="width: 3em;">
+    で終わるカード山札を
+    <input type="submit" value="作成" />
+  </form>
 </body>
 
 </html>
