@@ -1,0 +1,52 @@
+body {
+    font-family: "Segoe UI", sans-serif;
+}
+
+.logo {
+    width: 50px;
+}
+
+div.logo {
+    display: inline-block;
+}
+
+h1,
+h2,
+h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.result_number {
+    display: inline-block;
+    text-align: right;
+    background-color: rgb(243, 227, 157);
+    padding-right: 3px;
+    padding-left: 3px;
+}
+
+#taxable_income {
+    width: 8em;
+    text-align: right;
+}
+
+/*
+    Hide spin button of input number box.
+    Refer to: https://qiita.com/mrpero/items/c562cf9c2493bbbfe431
+*/
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* ウィンドウ幅が0〜479pxの場合に適用するCSS */
+@media screen and (max-width:479px) {
+    table {
+        /* TODO Set anything */
+    }
+}
