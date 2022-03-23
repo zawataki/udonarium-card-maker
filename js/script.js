@@ -1,17 +1,16 @@
 function makeSequentialCards() {
-  const back = 'image/card_back_blue.png';
-  const frontTemplate = 'image/card-with-number.svg';
-  const firstNum = Number($('#firstNumber').val());
-  const lastNum = Number($('#lastNumber').val());
-
-  if (firstNum > lastNum) {
-    console.error("lastNum must be equal to firstNum or more");
-    return;
-  }
-
-  const zip = new JSZip();
-
   (async () => {
+    const back = 'image/card_back_blue.png';
+    const frontTemplate = 'image/card-with-number.svg';
+    const firstNum = Number($('#firstNumber').val());
+    const lastNum = Number($('#lastNumber').val());
+
+    if (firstNum > lastNum) {
+      throw new Error("lastNum must be equal to firstNum or more");
+    }
+
+    const zip = new JSZip();
+
     const frontResponse = await fetch(frontTemplate);
     const cardTemplateContent = await frontResponse.text();
 
@@ -47,13 +46,17 @@ function makeSequentialCards() {
     const dataXmlBlob = new Blob([dataXmlContent], {type: "application/xml"});
     zip.file("data.xml", dataXmlBlob);
 
-
     const zipBlob = await zip.generateAsync({type: "blob"});
     const zipUrl = URL.createObjectURL(zipBlob);
     autoDownload("card.zip", zipUrl);
   })()
     .catch(error => {
       console.error("Failed to make sequential cards", error);
+
+      const errorMessageElement = document.createElement('div');
+      errorMessageElement.textContent = "作成に失敗しました。原因：" + error.message;
+      errorMessageElement.style = "color:red";
+      document.body.append(errorMessageElement);
     });
 }
 
