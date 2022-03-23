@@ -59,26 +59,42 @@ function makeSequentialCards() {
     const frontResponse = await fetch(frontTemplate);
     const cardTemplateContent = await frontResponse.text();
 
-    const promiseList = [];
+    const sha256HashList = [];
     for (let n = firstNum; n <= lastNum; n++) {
       let newSvgContent = cardTemplateContent.replace(/1(\n\s+<\/text>)/m, n + "$1");
       let blob = new Blob([newSvgContent], {type: "image/svg+xml"});
 
       const sha256Hash = await getSha256Hash(blob);
       zip.file(sha256Hash + ".svg", blob);
+      sha256HashList.push(sha256Hash);
     }
 
     const backResponse = await fetch(back);
     const backBlob = await backResponse.blob();
     const backSha256Hash = await getSha256Hash(backBlob);
-    const zipBlob = await zip.file(backSha256Hash + ".png", backBlob)
-      .generateAsync({type: "blob"});
-    console.log("typeof zipBlob: " + typeof zipBlob);
+    zip.file(backSha256Hash + ".png", backBlob);
+
+    const dataXmlResponse = await fetch("template/data.xml");
+    const dataXmlTemplateContent = await dataXmlResponse.text();
+    const domParser = new DOMParser();
+    const xmlDocument = domParser.parseFromString(dataXmlTemplateContent, 'application/xml');
+    const card = xmlDocument.querySelector('card');
+    const cardParentNode = xmlDocument.querySelector('node');
+    for (const hash of sha256HashList) {
+      const newCard = card.cloneNode(true);
+      newCard.querySelector('data[name="front"]').textContent = hash;
+      newCard.querySelector('data[name="back"]').textContent = backSha256Hash;
+      cardParentNode.append(newCard);
+    }
+    card.remove();
+    const dataXmlContent = new XMLSerializer().serializeToString(xmlDocument);
+    const dataXmlBlob = new Blob([dataXmlContent], {type: "application/xml"});
+    zip.file("data.xml", dataXmlBlob);
+
+
+    const zipBlob = await zip.generateAsync({type: "blob"});
     const zipUrl = URL.createObjectURL(zipBlob);
     autoDownload("card.zip", zipUrl);
-
-    // TODO: create data.xml file
-
   })()
     .catch(error => {
       console.error("Failed to make sequential cards", error);

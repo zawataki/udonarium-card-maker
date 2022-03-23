@@ -21,9 +21,11 @@
 
   <h2>連番カード</h2>
   <form style="display: inline-block" action="javascript:makeSequentialCards()">
-    <input type="number" pattern="\d*" id="firstNumber" style="width: 3em;">
+    <input type="number" pattern="\d*" id="firstNumber" style="width: 3em;"
+      value="1">
     から始まって
-    <input type="number" pattern="\d*" id="lastNumber" style="width: 3em;">
+    <input type="number" pattern="\d*" id="lastNumber" style="width: 3em;"
+      value="10">
     で終わるカード山札を
     <input type="submit" value="作成" />
   </form>
