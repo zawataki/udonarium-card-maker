@@ -6,7 +6,7 @@ function makeSequentialCards() {
     const lastNum = Number($('#lastNumber').val());
 
     if (firstNum > lastNum) {
-      throw new Error("lastNum must be equal to firstNum or more");
+      throw new Error("始まりの数字は終わりの数字以下にする必要があります。");
     }
 
     const zip = new JSZip();
@@ -49,14 +49,14 @@ function makeSequentialCards() {
     const zipBlob = await zip.generateAsync({type: "blob"});
     const zipUrl = URL.createObjectURL(zipBlob);
     autoDownload("card.zip", zipUrl);
+
+    document.querySelector('#errorMessage').textContent = "";
   })()
     .catch(error => {
       console.error("Failed to make sequential cards", error);
 
-      const errorMessageElement = document.createElement('div');
-      errorMessageElement.textContent = "作成に失敗しました。原因：" + error.message;
-      errorMessageElement.style = "color:red";
-      document.body.append(errorMessageElement);
+      document.querySelector('#errorMessage').textContent =
+        "作成に失敗しました。" + error.message;
     });
 }
 
