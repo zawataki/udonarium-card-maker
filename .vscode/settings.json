@@ -1,0 +1,14 @@
+{
+    "editor.rulers": [
+        80
+    ],
+    "html.format.indentInnerHtml": false,
+    "html.format.wrapLineLength": 80,
+    "html.format.wrapAttributes": "auto",
+    "html.format.endWithNewline": true,
+    "files.eol": "\n",
+    "cSpell.ignoreRegExpList": [
+        "[０-９Ａ-Ｚａ-ｚぁ-んァ-ヶ亜-熙纊-黑]+"
+    ],
+    "files.insertFinalNewline": true,
+}

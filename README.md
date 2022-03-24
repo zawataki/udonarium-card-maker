@@ -1,2 +1,2 @@
-# udonarium-card-maker
-Card maker for Udonarium
+# Udonarium card maker
+Card maker for [Udonarium](https://udonarium.app/).

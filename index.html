@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Udonarium card maker</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel=stylesheet type="text/css" href="css/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+    integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+    crossorigin="anonymous"></script>
+  <script src="js/script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"
+    integrity="sha512-xQBQYt9UcgblF6aCMrwU1NkVA7HCXaSN2oq0so80KO+y68M+n64FOcqgav4igHe6D5ObBLIf68DWv+gfBowczg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+  <h1>Udonarium card maker</h1>
+  <p>
+    Udonarium (<a href="https://udonarium.app/">本家</a>、<a
+      href="https://y-takizawa.net/udonarium/">本家+α版</a>) で利用できるカードを作成できます。<br>
+    作成ボタンを押すとzipファイル形式でダウンロードされるため、<br>
+    そのzipファイルをUdonariumの「ZIP読込」で選択するか、ドラッグ&ドロップすると読み込めます。
+  </p>
+
+  <h2>連番カード</h2>
+  <form style="display: inline-block" action="javascript:makeSequentialCards()">
+    <input type="number" pattern="\d*" id="firstNumber" style="width: 3em;"
+      value="1">
+    から始まって
+    <input type="number" pattern="\d*" id="lastNumber" style="width: 3em;"
+      value="10">
+    で終わるカード山札を
+    <input type="submit" value="作成" />
+    <p id="errorMessage"></p>
+  </form>
+</body>
+
+</html>

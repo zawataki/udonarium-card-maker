@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<card-stack location.name="table" location.x="400" location.y="325" posZ="0" rotate="0" zindex="12" owner="" isShowTotal="true">
+  <data name="card-stack">
+    <data name="image">
+      <data type="image" name="imageIdentifier"></data>
+    </data>
+    <data name="common">
+      <data name="name">山札</data>
+    </data>
+    <data name="detail"></data>
+  </data>
+  <node name="cardRoot">
+    <card location.name="table" location.x="400" location.y="325" posZ="0" state="0" rotate="0" owner="" zindex="0">
+      <data name="card">
+        <data name="image">
+          <data type="image" name="imageIdentifier"></data>
+          <data type="image" name="front">frontCardSha256Hash</data>
+          <data type="image" name="back">backCardSha256Hash</data>
+        </data>
+        <data name="common">
+          <data name="name">カード</data>
+          <data name="size">2</data>
+        </data>
+        <data name="detail"></data>
+      </data>
+    </card>
+  </node>
+</card-stack>
