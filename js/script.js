@@ -9,6 +9,8 @@ function makeSequentialCards() {
       throw new Error("始まりの数字は終わりの数字以下にする必要があります。");
     }
 
+    document.querySelector("#progressMessage").textContent = "作成中です・・・";
+
     const zip = new JSZip();
 
     const frontResponse = await fetch(frontTemplate);
@@ -50,6 +52,7 @@ function makeSequentialCards() {
     const zipUrl = URL.createObjectURL(zipBlob);
     autoDownload("card.zip", zipUrl);
 
+    document.querySelector("#progressMessage").textContent = "";
     document.querySelector('#errorMessage').textContent = "";
   })()
     .catch(error => {
