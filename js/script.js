@@ -80,5 +80,3 @@ function autoDownload(filename, url) {
     window.URL.revokeObjectURL(url);
   }, 0);
 }
-
-// TODO: 任意の画像やテキストを持つカードを作成する
